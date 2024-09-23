@@ -75,7 +75,7 @@ To sum up differences (Perceptron vs. Sigmoid Function):
 - Unstructured data is like images, video, audio, and text.
 - Structured data gives more money because companies relies on prediction on its big data.
 ## Why is deep learning taking off?
-1. Data: ![](imgs\data.png)
+1. Data: ![](imgs/data.png)
     - For small data NN can perform as Linear regression or SVM (Support vector machine)
     - For big data a small NN is better that SVM
     - For big data a big NN is better that a medium NN is better that small NN.
@@ -112,13 +112,13 @@ Algorithm is used for classification algorithm of 2 classes.
   - $b = b - \alpha * db$
 
 ## Neural Network Representation
-![image](imgs\nn.jpg)
+![image](imgs/nn.jpg)
 ## Computing Neural Network's Output
-![image](imgs\nn_representation.jpg)
+![image](imgs/nn_representation.jpg)
 ### if there is mutiple nodes and layers
 ![image](imgs\equations.jpg)
 ### but if we have multiple Examples (training set)
-![](imgs\equations.jpg)
+![](imgs/samples.jpg)
 ### Dimention of Each Parameter in Neural Network Equations
 $$z_i^{[l]} = W_i^{[l]} \cdot X + b_i^{[l]}$$
 $$ a_i^{[l]} = \sigma{(z_i^{[l]})}$$
@@ -143,7 +143,7 @@ $$ a_i^{[l]} = \sigma{(z_i^{[l]})}$$
 
        - muliple sample $a^{[l](1..m)}$  : $(n^{[l]},m)$
 - **Example** :
-![](imgs\ex.png)
+![](imgs/ex.png)
     We have:
     - 2 Layers 
     - \(m = 3\) examples (batch size of 3),
