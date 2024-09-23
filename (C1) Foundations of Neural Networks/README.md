@@ -61,7 +61,7 @@ To sum up differences (Perceptron vs. Sigmoid Function):
 - Perceptron: Outputs binary values (0 or 1) based on a threshold.
 - Sigmoid Function: Outputs values between 0 and 1, allowing for smoother changes in the input.
 
-| ![Image 1](imgs\perceptron_structure_v1.png) | ![Image 2](imgs\sigmoid.png) |
+| ![Image 1](imgs/perceptron_structure_v1.png) | ![Image 2](imgs/sigmoid.png) |
 |-----------------------|-----------------------|
 
 ## Supervised learning with neural networks
