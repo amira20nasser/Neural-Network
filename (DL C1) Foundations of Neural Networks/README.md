@@ -1,5 +1,6 @@
-# Agenda
+#### Course 1: Neural Networks and Deep Learning - Part of the Deep Learning Specialization
 
+# Agenda
 | Section | Description |
 |---------|-------------|
 | [What is a (Neural Network) NN?](#what-is-a-neural-network-nn) | Introduction to neural networks and their components. |
@@ -287,6 +288,11 @@ $$dW^{[l]} = (dZ^{[l]}A^{[l-1]}\cdot T) / m$$
 $$db^{[l]}  = np.sum( dZ^{[l]} ,axis = 1,keepdims=True ) / m $$      
 
 $$dA^{[l-1]}= w^{[l]}.T * dZ^{[l]}$$
+
+- drivative 
+  - sigmoid Function : $a - a^2$
+  - tanh : $1 - a^2$
+  - RLUE : $ f(z) = \begin{cases} 0 & \text{if } z < 0 \\1 & \text{if } z \geq 0 \end{cases}   $   
 
 ## Difference Between Parameters and Hyperparameters
 - **Parameters (like W and b):**
