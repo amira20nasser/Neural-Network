@@ -16,7 +16,6 @@
     - [Constructing a Layer of Neurons](#constructing-a-layer-of-neurons)
       - [Forward Propagation Algorithm for Neural Networks](#forward-propagation-algorithm-for-neural-networks)
     - [Reflections on Artificial General Intelligence (AGI)](#reflections-on-artificial-general-intelligence-agi)
-
 2. [Neural Network Training](#neural-network-training)
     - [Steps in TensorFlow to Train the Neural Network](#steps-in-tensorflow-to-train-the-neural-network)
     - [Activation Functions](#activation-functions)
@@ -28,6 +27,10 @@
       - [Classification with Multiple Outputs](#classification-with-multiple-outputs)
       - [Building Neural Networks for Multi-Label Classification](#building-neural-networks-for-multi-label-classification)
     - [Neural Network Layers](#neural-network-layers)
+3. []()
+    - []()
+4. []()
+    - []()    
 
 ---
 
@@ -298,7 +301,7 @@ print(Z)
 1. **Specify the Model**:
    - Sequentially string together layers of the neural network.
    - Layers:
-     - First hidden layer: 25 units with sigmoid activation.
+     - First hidden layer: j units with activation function.
      - Second hidden layer.
      - Output layer.
 
@@ -348,8 +351,7 @@ $$ f(x) = \frac{1}{1 + e^{-z}} $$
 
 - **Sigmoid Function** is often used to output a value between 0 and 1.
 - In the hidden layers and the output layer, we've used sigmoid because it builds on logistic regression. 
-- Equation
-`g(z) = 1 / (1 + e^(-z))`
+- Equation $g(z) = 1 / (1 + e^{-z})$
 
 - It's great for binary outcomes (i.e., output between 0 and 1).
   
@@ -630,11 +632,11 @@ $$ f(x) = \frac{1}{1 + e^{-z}} $$
 
 - Benefits of Convolutional Layers:
   1. **Faster computation**:
-    - By focusing on small regions, fewer connections are computed.
+      - By focusing on small regions, fewer connections are computed.
   2. **Less prone to overfitting**:
-    - It requires **less training data** compared to dense layers and generalizes better.
+      - It requires **less training data** compared to dense layers and generalizes better.
   3. **Parameter sharing**:
-    - A filter (or kernel) is shared across different parts of the image, reducing the number of parameters.
+      - A filter (or kernel) is shared across different parts of the image, reducing the number of parameters.
 
 - Example: Convolutional Neural Network (CNN)
   - **Input**: An ECG (electrocardiogram) signal for heart disease classification.
