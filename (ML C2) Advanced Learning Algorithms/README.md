@@ -27,9 +27,12 @@
       - [Classification with Multiple Outputs](#classification-with-multiple-outputs)
       - [Building Neural Networks for Multi-Label Classification](#building-neural-networks-for-multi-label-classification)
     - [Neural Network Layers](#neural-network-layers)
-3. []()
-    - []()
-4. []()
+3. [Advice for applying machine Learning](#advice-for-applying-machine-learning)
+    - [How to evaluate model](#how-to-evaluate-the-model)
+    - [How to choose model](#how-to-choose-the-model)
+    - [Bias and Variance](#effects-on-bias-variance)
+    - [Error metrics for skewed datasets](#error-metrics-for-skewed-datasets)
+4. [Decision trees](#decision-trees)
     - []()    
 
 ---
@@ -669,7 +672,164 @@ $$ f(x) = \frac{1}{1 + e^{-z}} $$
  <hr style="border:1px solid pink">
 
 # Advice for applying machine Learning
+### Problem Statement
+Building machine learning models can sometimes take longer than necessary due to uncertainty about which methods to use for improvement and the inefficient use of tools and evaluation techniques. To address this, it is crucial to understand the tools and tests available for evaluating and improving model performance. By doing so, one can make informed decisions to optimize the model effectively without wasting time on unproductive approaches.
+
+**Example :**
+
+Imagine you're working on **regularized linear regression** to predict **housing prices**. You have a **cost function** with squared error and a **regularization term**. The model makes **large errors** in its predictions. What should you do next?
+
+**Common Next Steps to Improve a Model :**
+1. More training data
+2. Fewer Features
+3. Additional Features
+4. Polynomial Features 
+5. **Regularization Parameter $\lambda$**:
+   - Adjust the **regularization term**.
+     - Decrease $\lambda$ if it's too big.
+     - Increase $\lambda$ if it's too small.
+
+some of these methods might work, but not all of them will. So, The key is knowing **Where to invest your time**     
+
+--- 
+### How to evaluate the model 
+
+**Splitting the Dataset**
+- **Training set** : Typically **70%-80%** of the data used to train the model.
+- **Test set** : The remaining **20%-30%** used to evaluate the model's performance.
+
+For example, evaluating a linear regression model, you can calculate the **training error** and **test error** :
+
+1. **Training error** $(J_{\text{train}}(w,b))$ : 
+$$   J_{\text{train}}(w,b) = \frac{1}{2m_{\text{train}}} \sum_{i=1}^{m_{\text{train}}} \left( \hat{y}_i - y_i \right)^2
+$$
+  - This measures how well the model fits the training data.
+
+
+1. **Test error** $(J_{\text{test}}(w,b))$ : 
+$$   J_{\text{test}}(w,b) = \frac{1}{2m_{\text{test}}} \sum_{i=1}^{m_{\text{test}}} \left( \hat{y}_i - y_i \right)^2$$
+
+   - This evaluates how well the model generalizes to unseen data.
+
+**Note :**
+- Training and test error **doesn't include regularization** unlike the cost function that you are minimizing to fit the parameters
+- For **logistic regression**, the cost function would be:
+  $$J(w, b) = \frac{1}{m} \sum_{i=1}^{m} \left[ y_i \log(h(x_i)) + (1 - y_i) \log(1 - h(x_i)) \right] + \frac{\lambda}{2m} \sum_{j=1}^{n} w_j^2$$
+
+  Additionally we compute the fraction of examples misclassified by the model 
+  - **Training error**: Fraction of training examples where $\hat{y} \neq y$.
+  - **Test error**: Fraction of test examples where $\hat{y} \neq y$.
+---
+### How to Choose the model 
+**Splitting the Dataset : Training, Cross-Validation, and Test Sets**
+
+1. **Training set**: Used to fit parameters w and b
+2. **Cross-validation set**: Used to choose the model, like selecting the model (e.g polynomial degree d)
+$$J_{\text{cv}}(w,b) = \frac{1}{2m_{\text{cv}}} \sum_{i=1}^{m_{\text{cv}}} \left( \hat{y}_i - y_i \right)^2$$
+3. **Test set**: Used to estimate generalization error after model selection.
+
+    For Example, once you've selected the best model (e.g., d = 4), use the **test set** to estimate generalization error: $ J_{test}(w^4, b^4)$. This ensures the test set provides an unbiased estimate because it wasn't used for model selection.
+
+**Note**
+
+- This model selection procedure applies to other algorithms, such as neural networks. For example, when choosing between different architectures (e.g., small, medium, large networks), compute $J_{cv}$ for each and select the network with the lowest cross-validation error. Finally, use the test set to estimate generalization error.
+
+
+- Make all model decisions (e.g., selecting d or network architecture) using only the **training set** and **cross-validation set**. Avoid using the test set until you finalize your model. This ensures the test set provides a **fair estimate** of how well the model will generalize to new data.
+---
+## Effects on Bias-Variance 
+- Bias and Variance with degree of poly:
+![](imgs/bias.png)
+
+- Bias-Variance with Regularization term 
+![alt text](imgs/image.png)
+- For example 
+![alt text](imgs/1.png)
+
+## Effects of training set size on Error
+![alt text](imgs/image-1.png)
+![alt text](imgs/image-2.png)
+![alt text](imgs/image-3.png)
+
+## Neural Network and bias-variance
+![](imgs/2.png)
+
+## Error metrics for skewed datasets
+![](imgs/3.png)
 
 <hr style="border:1px solid pink">
 
 # Decision trees
+**Structure of a Decision Tree**
+- Root Node: Represents the entire dataset and the initial decision to be made.
+- Internal Nodes: Represent decisions or tests on attributes. Each internal node has one or more branches.
+- Branches: Represent the outcome of a decision or test, leading to another node.
+- Leaf Nodes: Represent the final decision or prediction. No further splits occur at these nodes.
+
+**How does Decision Trees Work?**
+
+1. Selecting the Best Attribute: Using a metric like Gini min(impurity), entropy, or information gain, the best attribute to split the data is selected.
+
+
+2. Splitting the Dataset: The dataset is split into subsets based on the selected attribute.
+
+3. Repeating the Process: The process is repeated recursively for each subset, creating a new internal node or leaf node until a stopping criterion is met (e.g., all instances in a node belong to the same class or a predefined depth is reached).
+
+**How do you stop work?**
+
+![alt text](imgs/4.png)
+
+**Mesuring Purity**
+
+![alt text](imgs/5.png)
+
+from GeeksforGeeks
+
+![alt text](imgs/6.png)
+
+**How to build the Tree**
+
+[click here to show Example](https://medium.com/@MrBam44/decision-trees-91f61a42c724)
+
+**The Problem**
+
+Sensitivity to Data Changes: A single decision tree can be quite sensitive to minor variations in the training data. Changing just one example can alter the feature that splits at the root node, leading to entirely different subtrees and ultimately a different overall model. 
+ 
+**Solution**
+
+Tree Ensemble: A solution to this sensitivity problem is to train multiple decision trees, often referred to as an ensemble. By aggregating the predictions from several trees, we reduce the model's sensitivity to individual fluctuations in the data.
+
+- Voting Mechanism: When using an ensemble, the predictions from all the trees are combined, usually by having them "vote" on the final outcome. For example:
+
+  - If the ensemble contains 3 trees and 2 predict "cat" while 1 predicts "not cat," the majority vote determines that the final prediction is "cat."
+
+
+One common technique used is bagging (short for bootstrap aggregating), which involves sampling with replacement from the training data. This method helps create slightly different training datasets, each used to build a different tree, ensuring variety in the ensemble.
+
+Sampling with Replacement: Instead of training each tree on the same data, each tree is trained on a random subset of the training data. This process increases diversity among the trees, as each one is trained on a slightly different version of the dataset.
+
+**Randomization of Features:**
+
+To further increase the diversity among trees, instead of considering all features at each node split, a random subset of features is chosen.
+
+This helps avoid the problem of having multiple trees that all split on the same feature at the root or near the root, ensuring that the trees are more varied.
+
+If you have N total features, you typically choose K features at each node where $K = \sqrt{N}$ 
+​
+  - For example, if you had 100 features, at each split, you'd randomly choose around 10 features for consideration.
+
+## **XGBoost Overview:**
+Boosting Concept:
+XGBoost builds on the concept of boosting, which involves training new decision trees that focus on the examples the previous trees did not classify well.
+
+Instead of using sampling with replacement like Random Forest, boosting modifies how trees are trained. In particular, it increases the probability of selecting misclassified examples for training subsequent trees.
+
+![alt text](imgs/7.png)
+
+### When to Use XGBoost:
+- XGBoost is particularly useful when you need a highly efficient and accurate decision tree-based model for both classification and regression problems
+- However, when deciding between using a decision tree ensemble like XGBoost versus more complex models like neural networks, the choice often depends on the type of data and problem you're working with
+
+### Decision Tree & Neural Network
+![alt text](imgs/8.png)
+
